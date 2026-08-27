@@ -3,20 +3,22 @@ import { useEffect, useState } from "react";
 import logo from "@/assets/forezone-logo.png.asset.json";
 import { useReveal } from "@/hooks/use-reveal";
 
+const MAILTO =
+  "mailto:forezoneco@gmail.com?subject=Project%20Inquiry%20%E2%80%94%20ForeZone%20Co.&body=Hi%20ForeZone%20team%2C%0A%0AI%27d%20like%20to%20talk%20about%20a%20project.%0A%0AProject%3A%0ATimeline%3A%0ABudget%3A%0A%0AThanks%2C";
+
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "ForeZone Co. — Web Geliştirme Stüdyosu" },
+      { title: "ForeZone Co. — Web Development Studio" },
       {
         name: "description",
         content:
-          "ForeZone Co., markalar için hızlı, ölçeklenebilir ve zarif web deneyimleri tasarlayıp geliştiren bir web development stüdyosudur.",
+          "ForeZone Co. designs and builds fast, scalable and elegant web experiences for ambitious brands.",
       },
-      { property: "og:title", content: "ForeZone Co. — Web Geliştirme Stüdyosu" },
+      { property: "og:title", content: "ForeZone Co. — Web Development Studio" },
       {
         property: "og:description",
-        content:
-          "Zarif arayüzler, sağlam mühendislik. ForeZone Co. ile markanızı web'de öne çıkarın.",
+        content: "Elegant interfaces, solid engineering. Web products built end to end.",
       },
     ],
   }),
@@ -26,38 +28,38 @@ export const Route = createFileRoute("/")({
 const services = [
   {
     no: "01",
-    title: "Web Uygulamaları",
-    text: "React ve modern altyapılarla ölçeklenebilir, hızlı ve güvenli ürünler.",
+    title: "Web Applications",
+    text: "Scalable, fast and secure products built with React and modern infrastructure.",
   },
   {
     no: "02",
-    title: "Kurumsal Siteler",
-    text: "Marka kimliğinizi yansıtan, SEO dostu ve dönüşüm odaklı web siteleri.",
+    title: "Business Websites",
+    text: "SEO-friendly, conversion-focused sites that carry your brand identity.",
   },
   {
     no: "03",
-    title: "Arayüz Tasarımı",
-    text: "Tipografi ve detay disiplinine dayanan zarif, akıcı kullanıcı deneyimleri.",
+    title: "Interface Design",
+    text: "Elegant, fluid user experiences grounded in typography and detail.",
   },
   {
     no: "04",
-    title: "Bakım & Büyüme",
-    text: "Performans izleme, sürekli iyileştirme ve teknik danışmanlık.",
+    title: "Care & Growth",
+    text: "Performance monitoring, continuous improvement and technical consulting.",
   },
 ];
 
 const works = [
-  { name: "Aurora Finance", tag: "Fintech Panel", year: "2026" },
-  { name: "Maison Levant", tag: "E-Ticaret", year: "2025" },
+  { name: "Aurora Finance", tag: "Fintech Dashboard", year: "2026" },
+  { name: "Maison Levant", tag: "E-Commerce", year: "2025" },
   { name: "Nord Atlas", tag: "SaaS Platform", year: "2025" },
-  { name: "Veda Studio", tag: "Portfolyo", year: "2024" },
+  { name: "Veda Studio", tag: "Portfolio", year: "2024" },
 ];
 
 const steps = [
-  { title: "Keşif", text: "Hedefleri, kullanıcıyı ve kapsamı netleştiririz." },
-  { title: "Tasarım", text: "Akış, tipografi ve arayüz dilini kurgularız." },
-  { title: "Geliştirme", text: "Temiz mimari ile hızlı ve erişilebilir kod." },
-  { title: "Yayın", text: "Ölçüm, optimizasyon ve sürekli destek." },
+  { title: "Discovery", text: "We clarify goals, audience and scope together." },
+  { title: "Design", text: "We shape the flow, typography and interface language." },
+  { title: "Build", text: "Clean architecture, fast and accessible code." },
+  { title: "Launch", text: "Measurement, optimization and ongoing support." },
 ];
 
 function Index() {
@@ -80,25 +82,25 @@ function Index() {
       >
         <nav className="mx-auto flex max-w-6xl items-center justify-between px-6">
           <a href="#top" className="flex items-center gap-3">
-            <img src={logo.url} alt="ForeZone Co. logosu" className="h-10 w-10 rounded-sm" />
+            <img src={logo.url} alt="ForeZone Co. logo" className="h-10 w-10 rounded-sm" />
             <span className="font-display text-lg tracking-[0.28em] uppercase">ForeZone</span>
           </a>
           <div className="hidden items-center gap-9 text-[13px] tracking-[0.16em] uppercase text-muted-foreground md:flex">
-            <a className="link-underline transition-colors hover:text-foreground" href="#hizmetler">
-              Hizmetler
+            <a className="link-underline transition-colors hover:text-foreground" href="#services">
+              Services
             </a>
-            <a className="link-underline transition-colors hover:text-foreground" href="#isler">
-              İşler
+            <a className="link-underline transition-colors hover:text-foreground" href="#work">
+              Work
             </a>
-            <a className="link-underline transition-colors hover:text-foreground" href="#surec">
-              Süreç
+            <a className="link-underline transition-colors hover:text-foreground" href="#process">
+              Process
             </a>
           </div>
           <a
-            href="#iletisim"
+            href={MAILTO}
             className="rounded-sm border border-border px-5 py-2 text-[12px] tracking-[0.18em] uppercase transition-all duration-300 hover:bg-primary hover:text-primary-foreground"
           >
-            Konuşalım
+            Let's Talk
           </a>
         </nav>
       </header>
@@ -108,8 +110,7 @@ function Index() {
         <div
           className="pointer-events-none absolute left-1/2 top-1/2 h-[42rem] w-[42rem] -translate-x-1/2 -translate-y-1/2 rounded-full animate-glow"
           style={{
-            background:
-              "radial-gradient(circle, oklch(0.66 0.13 45 / 25%) 0%, transparent 65%)",
+            background: "radial-gradient(circle, oklch(0.66 0.13 45 / 25%) 0%, transparent 65%)",
           }}
         />
         <div className="relative mx-auto grid max-w-6xl items-center gap-16 px-6 pt-32 pb-24 md:grid-cols-[1.15fr_0.85fr]">
@@ -124,32 +125,32 @@ function Index() {
               className="animate-rise mt-7 text-5xl leading-[1.02] sm:text-6xl md:text-7xl"
               style={{ animationDelay: "0.18s" }}
             >
-              Zarif arayüzler,
+              Elegant interfaces,
               <br />
-              <span className="italic text-accent">sağlam</span> mühendislik.
+              <span className="italic text-accent">solid</span> engineering.
             </h1>
             <p
               className="animate-rise mt-8 max-w-md text-[15px] leading-relaxed text-muted-foreground"
               style={{ animationDelay: "0.32s" }}
             >
-              ForeZone Co. markanızı web'de hak ettiği yere taşır. Tasarımdan yayına kadar tek bir
-              ekip, tek bir standart: kusursuz detay.
+              ForeZone Co. takes your brand where it belongs on the web. One team from design to
+              launch, one standard: flawless detail.
             </p>
             <div
               className="animate-rise mt-11 flex flex-wrap items-center gap-4"
               style={{ animationDelay: "0.46s" }}
             >
               <a
-                href="#iletisim"
+                href={MAILTO}
                 className="glow-shadow rounded-sm bg-primary px-8 py-4 text-[12px] tracking-[0.2em] uppercase text-primary-foreground transition-transform duration-300 hover:-translate-y-0.5"
               >
-                Projenizi anlatın
+                Tell us about your project
               </a>
               <a
-                href="#isler"
+                href="#work"
                 className="link-underline text-[12px] tracking-[0.2em] uppercase text-muted-foreground transition-colors hover:text-foreground"
               >
-                İşlerimize bakın
+                See our work
               </a>
             </div>
           </div>
@@ -173,23 +174,24 @@ function Index() {
                 <span>React</span>
                 <span>TypeScript</span>
                 <span>Next Gen UI</span>
-                <span>Performans</span>
+                <span>Performance</span>
                 <span>SEO</span>
-                <span>Erişilebilirlik</span>
+                <span>Accessibility</span>
                 <span>Cloud</span>
-                <span>Tasarım Sistemleri</span>
+                <span>Design Systems</span>
               </span>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Hizmetler */}
-      <section id="hizmetler" className="mx-auto max-w-6xl px-6 py-28">
+      {/* Services */}
+      <section id="services" className="mx-auto max-w-6xl px-6 py-28">
         <div className="reveal flex flex-wrap items-end justify-between gap-6">
-          <h2 className="text-4xl md:text-5xl">Ne yapıyoruz</h2>
+          <h2 className="text-4xl md:text-5xl">What we do</h2>
           <p className="max-w-sm text-sm leading-relaxed text-muted-foreground">
-            Küçük ekip, yüksek standart. Her proje tek tek ele alınır, şablonla çalışmayız.
+            Small team, high standard. Every project is handled on its own terms — never from a
+            template.
           </p>
         </div>
         <div className="hairline mt-10" />
@@ -210,10 +212,10 @@ function Index() {
         </div>
       </section>
 
-      {/* İşler */}
-      <section id="isler" className="border-y border-border bg-card/40">
+      {/* Work */}
+      <section id="work" className="border-y border-border bg-card/40">
         <div className="mx-auto max-w-6xl px-6 py-28">
-          <h2 className="reveal text-4xl md:text-5xl">Seçili işler</h2>
+          <h2 className="reveal text-4xl md:text-5xl">Selected work</h2>
           <ul className="mt-14">
             {works.map((w, i) => (
               <li
@@ -222,7 +224,7 @@ function Index() {
                 style={{ transitionDelay: `${i * 80}ms` }}
               >
                 <a
-                  href="#iletisim"
+                  href={MAILTO}
                   className="flex items-baseline justify-between gap-6 py-8 transition-all duration-500 group-hover:px-4"
                 >
                   <span className="font-display text-3xl md:text-4xl">{w.name}</span>
@@ -236,9 +238,9 @@ function Index() {
         </div>
       </section>
 
-      {/* Süreç */}
-      <section id="surec" className="mx-auto max-w-6xl px-6 py-28">
-        <h2 className="reveal text-4xl md:text-5xl">Nasıl çalışıyoruz</h2>
+      {/* Process */}
+      <section id="process" className="mx-auto max-w-6xl px-6 py-28">
+        <h2 className="reveal text-4xl md:text-5xl">How we work</h2>
         <div className="mt-14 grid gap-10 md:grid-cols-4">
           {steps.map((s, i) => (
             <div key={s.title} className="reveal" style={{ transitionDelay: `${i * 100}ms` }}>
@@ -251,30 +253,30 @@ function Index() {
         </div>
       </section>
 
-      {/* İletişim */}
-      <section id="iletisim" className="hero-surface border-t border-border">
+      {/* Contact */}
+      <section id="contact" className="hero-surface border-t border-border">
         <div className="reveal mx-auto max-w-3xl px-6 py-32 text-center">
           <img
             src={logo.url}
             alt="ForeZone Co. monogram"
             className="animate-float mx-auto w-20 rounded-sm"
           />
-          <h2 className="mt-10 text-4xl md:text-6xl">Bir sonraki proje sizin olsun.</h2>
+          <h2 className="mt-10 text-4xl md:text-6xl">Let the next project be yours.</h2>
           <p className="mx-auto mt-6 max-w-lg text-[15px] leading-relaxed text-muted-foreground">
-            Fikrinizi anlatın; kapsam, süre ve yaklaşımımızı 48 saat içinde paylaşalım.
+            Tell us your idea and we'll share scope, timeline and our approach within 48 hours.
           </p>
           <a
-            href="mailto:hello@forezone.co"
+            href={MAILTO}
             className="glow-shadow mt-11 inline-block rounded-sm bg-primary px-10 py-4 text-[12px] tracking-[0.2em] uppercase text-primary-foreground transition-transform duration-300 hover:-translate-y-0.5"
           >
-            hello@forezone.co
+            forezoneco@gmail.com
           </a>
         </div>
       </section>
 
       <footer className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-4 px-6 py-10 text-[11px] tracking-[0.2em] uppercase text-muted-foreground">
         <span>© {new Date().getFullYear()} ForeZone Co.</span>
-        <span>İstanbul · Uzaktan çalışıyoruz</span>
+        <span>Tekirdağ · Working remotely</span>
       </footer>
     </div>
   );
