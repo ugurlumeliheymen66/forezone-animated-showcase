@@ -96,12 +96,6 @@ function Index() {
               Process
             </a>
           </div>
-          <a
-            href={MAILTO}
-            className="rounded-sm border border-border px-5 py-2 text-[12px] tracking-[0.18em] uppercase transition-all duration-300 hover:bg-primary hover:text-primary-foreground"
-          >
-            Let's Talk
-          </a>
         </nav>
       </header>
 
