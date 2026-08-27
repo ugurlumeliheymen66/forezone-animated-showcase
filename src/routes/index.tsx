@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import logo from "@/assets/forezone-logo.png.asset.json";
+const logo = { url: "/forezone-logo.png" };
 import { useReveal } from "@/hooks/use-reveal";
 
 const MAILTO =
