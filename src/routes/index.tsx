@@ -194,7 +194,7 @@ function Index() {
           {services.map((s, i) => (
             <article
               key={s.no}
-              className="reveal group border-b border-border p-8 transition-colors duration-500 hover:bg-card sm:odd:border-r"
+              className="reveal group border-b border-border p-8 transition-colors duration-500 hover:bg-card sm:odd:border-r hover:-translate-y-2 hover:border-primary/50 hover:shadow-[0_10px_30px_rgba(0,0,0,0.5)] transition-all"
               style={{ transitionDelay: `${i * 90}ms` }}
             >
               <span className="font-display text-sm text-accent">{s.no}</span>
