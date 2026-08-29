@@ -7,8 +7,14 @@ export function CustomCursor() {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    // Mobil veya dokunmatik ekranlarda özel imleci gizle
-    if (window.matchMedia("(pointer: coarse)").matches) return;
+    // Sadece hassas bir işaretçisi (mouse) olan cihazlarda çalıştır
+    const mediaQuery = window.matchMedia("(pointer: fine) and (hover: hover)");
+    
+    if (!mediaQuery.matches) {
+      setIsVisible(false);
+      return;
+    }
+
     setIsVisible(true);
 
     const onMouseMove = (e: MouseEvent) => {
@@ -39,7 +45,7 @@ export function CustomCursor() {
     };
   }, []);
 
-  // Halkanın noktayı akıcı ve yumuşak takip etmesi için (lerp mantığı)
+  // Halkanın noktayı akıcı takip etmesi (lerp)
   useEffect(() => {
     if (!isVisible) return;
     let animationFrameId: number;
@@ -57,7 +63,7 @@ export function CustomCursor() {
   if (!isVisible) return null;
 
   return (
-    <>
+    <div className="hidden pointer-fine:hover-hover:block">
       {/* Merkezdeki Küçük Nokta */}
       <div
         className="pointer-events-none fixed top-0 left-0 z-[9999] h-2 w-2 rounded-full bg-primary transition-transform duration-75 ease-out"
@@ -80,6 +86,6 @@ export function CustomCursor() {
           }px, 0)`,
         }}
       />
-    </>
+    </div>
   );
 }
