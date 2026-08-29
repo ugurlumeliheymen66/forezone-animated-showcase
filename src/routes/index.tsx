@@ -1,9 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
+const logo = { url: "/forezone-logo.png" };
 import { useReveal } from "@/hooks/use-reveal";
 import { CustomCursor } from "@/components/ui/custom-cursor";
-
-const logo = { url: "/forezone-logo.png" };
 
 const MAILTO =
   "mailto:forezoneco@gmail.com?subject=Project%20Inquiry%20%E2%80%94%20ForeZone%20Co.&body=Hi%20ForeZone%20team%2C%0A%0AI%27d%20like%20to%20talk%20about%20a%20project.%0A%0AProject%3A%0ATimeline%3A%0ABudget%3A%0A%0AThanks%2C";
@@ -67,19 +66,13 @@ const steps = [
 function Index() {
   useReveal();
   const [scrolled, setScrolled] = useState(false);
-  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
-    setIsMounted(true);
     const onScroll = () => setScrolled(window.scrollY > 24);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
-
-  if (!isMounted) {
-    return <div className="min-h-screen bg-[#0d0203]" />;
-  }
 
   return (
     <div className="min-h-screen overflow-x-hidden">
@@ -215,7 +208,7 @@ function Index() {
         </div>
       </section>
 
-      {/* Work */}
+     {/* Work */}
       <section id="work" className="border-y border-border bg-card/40">
         <div className="mx-auto max-w-6xl px-6 py-28">
           <h2 className="reveal text-4xl md:text-5xl">Selected work</h2>
@@ -266,7 +259,9 @@ function Index() {
             Tell us your idea and we'll share scope, timeline and our approach within 48 hours.
           </p>
 
+          {/* Butonlar Grubu */}
           <div className="mt-11 flex flex-wrap items-center justify-center gap-4">
+            {/* E-posta Butonu */}
             <a
               href={MAILTO}
               className="glow-shadow inline-block rounded-sm bg-primary px-10 py-4 text-[12px] tracking-[0.2em] uppercase text-primary-foreground transition-transform duration-300 hover:-translate-y-0.5"
@@ -274,6 +269,7 @@ function Index() {
               forezoneco@gmail.com
             </a>
 
+            {/* Instagram Butonu */}
             <a
               href="https://instagram.com/forezoneco"
               target="_blank"
