@@ -226,3 +226,7 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #3f3f46;
 }
+/* Tarayıcının varsayılan imlecini tüm sitede gizle */
+html, body, a, button {
+  cursor: none !important;
+}
