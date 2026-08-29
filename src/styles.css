@@ -245,3 +245,13 @@ html, body, a, button {
 *:active {
   outline: none !important;
 }
+/* Dokunmatik (Mobil/Tablet) ekranlarda imleç bileşenini tamamen yok et */
+@media (pointer: coarse), (hover: none) {
+  [data-custom-cursor="true"],
+  .custom-cursor-container {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
+}
