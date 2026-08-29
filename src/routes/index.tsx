@@ -208,7 +208,7 @@ function Index() {
         </div>
       </section>
 
-      {/* Work */}
+     {/* Work */}
       <section id="work" className="border-y border-border bg-card/40">
         <div className="mx-auto max-w-6xl px-6 py-28">
           <h2 className="reveal text-4xl md:text-5xl">Selected work</h2>
@@ -219,15 +219,12 @@ function Index() {
                 className="reveal group border-t border-border last:border-b"
                 style={{ transitionDelay: `${i * 80}ms` }}
               >
-                <a
-                  href={MAILTO}
-                  className="flex items-baseline justify-between gap-6 py-8 transition-all duration-500 group-hover:px-4 hover:translate-x-3"
-                >
+                <div className="flex items-baseline justify-between gap-6 py-8 transition-all duration-500 group-hover:px-4 hover:translate-x-3 cursor-default">
                   <span className="font-display text-3xl md:text-4xl">{w.name}</span>
                   <span className="text-[11px] tracking-[0.25em] uppercase text-muted-foreground">
                     {w.tag} · {w.year}
                   </span>
-                </a>
+                </div>
               </li>
             ))}
           </ul>
