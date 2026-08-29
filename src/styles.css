@@ -234,3 +234,14 @@ html, body, a, button {
 *, *::before, *::after {
   cursor: none !important;
 }
+/* Mobilde ekrana dokununca çıkan beyaz/mavi efekti kaldırır */
+* {
+  -webkit-tap-highlight-color: transparent !important;
+}
+
+/* Dokunma anındaki dış çizgileri ve odaklanma halkalarını engeller */
+*:focus,
+*:focus-visible,
+*:active {
+  outline: none !important;
+}
