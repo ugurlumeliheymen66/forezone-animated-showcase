@@ -8,18 +8,17 @@ export function CustomCursor() {
     const handleMouseMove = (e: MouseEvent) => {
       setPosition({ x: e.clientX, y: e.clientY });
 
-      // Tıklanabilir elementlerin üzerinde olup olmadığını kontrol et
       const target = e.target as HTMLElement;
-      if (
+      
+      // Tıklanabilir öğeler VEYA hover efekti olan özel listeler/yazılar
+      const isInteractive =
         target.tagName === "BUTTON" ||
         target.tagName === "A" ||
         target.closest("a") ||
-        target.closest("button")
-      ) {
-        setIsHovered(true);
-      } else {
-        setIsHovered(false);
-      }
+        target.closest("button") ||
+        target.closest("li"); // Selected work öğeleri için li kontrolü
+
+      setIsHovered(!!isInteractive);
     };
 
     window.addEventListener("mousemove", handleMouseMove);
@@ -29,7 +28,9 @@ export function CustomCursor() {
   return (
     <div
       className={`pointer-events-none fixed left-0 top-0 z-[9999] rounded-full transition-transform duration-150 ease-out ${
-        isHovered ? "h-10 w-10 -translate-x-1/2 -translate-y-1/2 bg-accent/40 backdrop-blur-sm" : "h-5 w-5 -translate-x-1/2 -translate-y-1/2 bg-primary/80"
+        isHovered
+          ? "h-12 w-12 bg-accent/30 backdrop-blur-sm"
+          : "h-5 w-5 bg-primary/80"
       }`}
       style={{
         transform: `translate3d(${position.x}px, ${position.y}px, 0) translate(-50%, -50%)`,
