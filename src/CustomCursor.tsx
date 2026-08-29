@@ -1,27 +1,25 @@
 import { useEffect, useState } from "react";
 
 export function CustomCursor() {
-  const [position, setPosition] = useState({ x: 0, y: 0 });
-  const [trailingPos, setTrailingPos] = useState({ x: 0, y: 0 });
+  const [position, setPosition] = useState({ x: -100, y: -100 });
+  const [trailingPos, setTrailingPos] = useState({ x: -100, y: -100 });
   const [isHovered, setIsHovered] = useState(false);
   const [isDesktop, setIsDesktop] = useState(false);
 
   useEffect(() => {
-    // Mobil veya dokunmatik ekran kontrolü
-    const checkIsDesktop = () => {
-      const hasFinePointer = window.matchMedia("(pointer: fine)").matches;
-      const hasHover = window.matchMedia("(hover: hover)").matches;
-      // Mobilde touch event destekleniyorsa veya pointer dokunmatikse desktop DEĞİLDİR
-      const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-
-      setIsDesktop(hasFinePointer && hasHover && !isTouchDevice);
+    // Mobil/Touch cihaz kontrolü
+    const checkDevice = () => {
+      const isMobileDevice = window.matchMedia("(pointer: coarse)").matches || 
+                             window.matchMedia("(hover: none)").matches;
+      setIsDesktop(!isMobileDevice);
     };
 
-    checkIsDesktop();
+    checkDevice();
+    window.addEventListener("resize", checkDevice);
+    return () => window.removeEventListener("resize", checkDevice);
   }, []);
 
   useEffect(() => {
-    // Mobil cihazsa event listener'ları HİÇ bağlama
     if (!isDesktop) return;
 
     const onMouseMove = (e: MouseEvent) => {
@@ -66,11 +64,11 @@ export function CustomCursor() {
     return () => cancelAnimationFrame(animationFrameId);
   }, [position, isDesktop]);
 
-  // MOBİLDE HİÇBİR HTML ELEMENTİ RENDER ETME
+  // Mobilde JSX'i HİÇ basma
   if (!isDesktop) return null;
 
   return (
-    <div data-custom-cursor="true" className="custom-cursor-container">
+    <div className="hidden pointer-fine:hover-hover:block">
       {/* Merkezdeki Küçük Nokta */}
       <div
         className="pointer-events-none fixed top-0 left-0 z-[9999] h-2 w-2 rounded-full bg-primary transition-transform duration-75 ease-out"
