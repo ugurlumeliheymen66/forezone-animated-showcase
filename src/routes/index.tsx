@@ -1,6 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { Turnstile } from "@marsidev/react-turnstile";
 import { useReveal } from "@/hooks/use-reveal";
 import { CustomCursor } from "@/components/ui/custom-cursor";
 
@@ -68,7 +67,6 @@ const steps = [
 function Index() {
   useReveal();
   const [scrolled, setScrolled] = useState(false);
-  const [isVerified, setIsVerified] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
@@ -79,42 +77,10 @@ function Index() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Sunucu tarafında veya istemci yüklenmeden önce siyah arka plan gösterilir (SSR crash engelleme)
   if (!isMounted) {
     return <div className="min-h-screen bg-[#0d0203]" />;
   }
 
-  // Doğrulama Ekranı (İstemci tarafında güvenle render edilir)
-  if (!isVerified) {
-    return (
-      <div className="fixed inset-0 z-50 flex min-h-screen w-full items-center justify-center bg-[#0d0203] px-4 overflow-hidden">
-        <CustomCursor />
-        <div className="flex flex-col items-center text-center w-full max-w-sm p-8 rounded-lg border border-border bg-card/60 backdrop-blur-md shadow-2xl">
-          <img
-            src={logo.url}
-            alt="ForeZone Co. monogram"
-            className="w-14 h-14 rounded-sm mb-5"
-          />
-          <span className="text-[10px] tracking-[0.3em] uppercase text-muted-foreground mb-1">
-            Security Check
-          </span>
-          <h2 className="text-xl font-display mb-2 text-foreground">Verify you are human</h2>
-          <p className="text-xs text-muted-foreground mb-6 leading-relaxed">
-            Please complete the quick verification below to access ForeZone Co.
-          </p>
-          <div className="flex justify-center items-center w-full min-h-[65px]">
-            <Turnstile
-              siteKey="0x4AAAAAAEgv14YsSssfSGFu"
-              options={{ theme: "dark" }}
-              onSuccess={() => setIsVerified(true)}
-            />
-          </div>
-        </div>
-      </div>
-    );
-  }
-
-  // Doğrulama Geçildikten Sonraki Ana Sayfa
   return (
     <div className="min-h-screen overflow-x-hidden">
       <CustomCursor />
