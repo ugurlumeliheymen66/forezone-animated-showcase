@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 const logo = { url: "/forezone-logo.png" };
 import { useReveal } from "@/hooks/use-reveal";
-import { CustomCursor } from "@/components/ui/CustomCursor";
+import { CustomCursor } from "@/components/ui/custom-cursor";
 
 const MAILTO =
   "mailto:forezoneco@gmail.com?subject=Project%20Inquiry%20%E2%80%94%20ForeZone%20Co.&body=Hi%20ForeZone%20team%2C%0A%0AI%27d%20like%20to%20talk%20about%20a%20project.%0A%0AProject%3A%0ATimeline%3A%0ABudget%3A%0A%0AThanks%2C";
