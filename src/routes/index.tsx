@@ -247,26 +247,7 @@ function Index() {
         </div>
       </section>
 
-      {/* Contact */}
-      <section id="contact" className="hero-surface border-t border-border">
-        <div className="reveal mx-auto max-w-3xl px-6 py-32 text-center">
-          <img
-            src={logo.url}
-            alt="ForeZone Co. monogram"
-            className="animate-float mx-auto w-20 rounded-sm"
-          />
-          <h2 className="mt-10 text-4xl md:text-6xl">Let the next project be yours.</h2>
-          <p className="mx-auto mt-6 max-w-lg text-[15px] leading-relaxed text-muted-foreground">
-            Tell us your idea and we'll share scope, timeline and our approach within 48 hours.
-          </p>
-          <a
-            href={MAILTO}
-            className="glow-shadow mt-11 inline-block rounded-sm bg-primary px-10 py-4 text-[12px] tracking-[0.2em] uppercase text-primary-foreground transition-transform duration-300 hover:-translate-y-0.5"
-          >
-            forezoneco@gmail.com
-          </a>
-        </div>
-      {/* Contact */}
+{/* Contact */}
       <section id="contact" className="hero-surface border-t border-border">
         <div className="reveal mx-auto max-w-3xl px-6 py-32 text-center">
           <img
