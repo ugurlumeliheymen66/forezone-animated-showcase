@@ -69,15 +69,22 @@ function Index() {
   useReveal();
   const [scrolled, setScrolled] = useState(false);
   const [isVerified, setIsVerified] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
+    setIsMounted(true);
     const onScroll = () => setScrolled(window.scrollY > 24);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Doğrulama Ekranı
+  // Sunucu tarafında veya istemci yüklenmeden önce siyah arka plan gösterilir (SSR crash engelleme)
+  if (!isMounted) {
+    return <div className="min-h-screen bg-[#0d0203]" />;
+  }
+
+  // Doğrulama Ekranı (İstemci tarafında güvenle render edilir)
   if (!isVerified) {
     return (
       <div className="fixed inset-0 z-50 flex min-h-screen w-full items-center justify-center bg-[#0d0203] px-4 overflow-hidden">
@@ -97,10 +104,9 @@ function Index() {
           </p>
           <div className="flex justify-center items-center w-full min-h-[65px]">
             <Turnstile
-              siteKey="1x00000000000000000000AA"
+              siteKey="0x4AAAAAAEgv14YsSssfSGFu"
               options={{ theme: "dark" }}
               onSuccess={() => setIsVerified(true)}
-              onError={(err) => console.error("Turnstile error:", err)}
             />
           </div>
         </div>
