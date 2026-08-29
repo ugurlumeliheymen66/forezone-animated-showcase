@@ -4,18 +4,25 @@ export function CustomCursor() {
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [trailingPos, setTrailingPos] = useState({ x: 0, y: 0 });
   const [isHovered, setIsHovered] = useState(false);
-  const [isVisible, setIsVisible] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(false);
 
   useEffect(() => {
-    // Sadece hassas bir işaretçisi (mouse) olan cihazlarda çalıştır
-    const mediaQuery = window.matchMedia("(pointer: fine) and (hover: hover)");
-    
-    if (!mediaQuery.matches) {
-      setIsVisible(false);
-      return;
-    }
+    // Mobil veya dokunmatik ekran kontrolü
+    const checkIsDesktop = () => {
+      const hasFinePointer = window.matchMedia("(pointer: fine)").matches;
+      const hasHover = window.matchMedia("(hover: hover)").matches;
+      // Mobilde touch event destekleniyorsa veya pointer dokunmatikse desktop DEĞİLDİR
+      const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
 
-    setIsVisible(true);
+      setIsDesktop(hasFinePointer && hasHover && !isTouchDevice);
+    };
+
+    checkIsDesktop();
+  }, []);
+
+  useEffect(() => {
+    // Mobil cihazsa event listener'ları HİÇ bağlama
+    if (!isDesktop) return;
 
     const onMouseMove = (e: MouseEvent) => {
       setPosition({ x: e.clientX, y: e.clientY });
@@ -43,11 +50,10 @@ export function CustomCursor() {
       window.removeEventListener("mousemove", onMouseMove);
       window.removeEventListener("mouseover", onMouseOver);
     };
-  }, []);
+  }, [isDesktop]);
 
-  // Halkanın noktayı akıcı takip etmesi (lerp)
   useEffect(() => {
-    if (!isVisible) return;
+    if (!isDesktop) return;
     let animationFrameId: number;
     const follow = () => {
       setTrailingPos((prev) => ({
@@ -58,12 +64,13 @@ export function CustomCursor() {
     };
     follow();
     return () => cancelAnimationFrame(animationFrameId);
-  }, [position, isVisible]);
+  }, [position, isDesktop]);
 
-  if (!isVisible) return null;
+  // MOBİLDE HİÇBİR HTML ELEMENTİ RENDER ETME
+  if (!isDesktop) return null;
 
   return (
-    <div className="hidden pointer-fine:hover-hover:block">
+    <div data-custom-cursor="true" className="custom-cursor-container">
       {/* Merkezdeki Küçük Nokta */}
       <div
         className="pointer-events-none fixed top-0 left-0 z-[9999] h-2 w-2 rounded-full bg-primary transition-transform duration-75 ease-out"
