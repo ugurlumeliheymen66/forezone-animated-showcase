@@ -66,17 +66,31 @@ const steps = [
 function Index() {
   useReveal();
   const [scrolled, setScrolled] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(false);
 
   useEffect(() => {
+    // Sadece masaüstü cihaz kontrolü (imleç için)
+    const checkDesktop = () => {
+      setIsDesktop(window.matchMedia("(pointer: fine) and (hover: hover)").matches);
+    };
+    checkDesktop();
+    window.addEventListener("resize", checkDesktop);
+
     const onScroll = () => setScrolled(window.scrollY > 24);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+
+    return () => {
+      window.removeEventListener("resize", checkDesktop);
+      window.removeEventListener("scroll", onScroll);
+    };
   }, []);
 
   return (
     <div className="min-h-screen overflow-x-hidden">
-      <CustomCursor />
+      {/* Custom Cursor SADECE MASAÜSTÜNDE RENDER EDİLİR */}
+      {isDesktop && <CustomCursor />}
+      
       <header
         className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
           scrolled ? "bg-oxblood-deep/85 backdrop-blur-md py-3" : "py-6"
@@ -103,8 +117,9 @@ function Index() {
 
       {/* Hero */}
       <section id="top" className="hero-surface relative flex min-h-screen items-center">
+        {/* Glow efekti mobilde gizlendi (hidden md:block) */}
         <div
-          className="pointer-events-none absolute left-1/2 top-1/2 h-[42rem] w-[42rem] -translate-x-1/2 -translate-y-1/2 rounded-full animate-glow"
+          className="pointer-events-none absolute left-1/2 top-1/2 hidden h-[42rem] w-[42rem] -translate-x-1/2 -translate-y-1/2 rounded-full animate-glow md:block"
           style={{
             background: "radial-gradient(circle, oklch(0.66 0.13 45 / 25%) 0%, transparent 65%)",
           }}
@@ -208,7 +223,7 @@ function Index() {
         </div>
       </section>
 
-     {/* Work */}
+      {/* Work */}
       <section id="work" className="border-y border-border bg-card/40">
         <div className="mx-auto max-w-6xl px-6 py-28">
           <h2 className="reveal text-4xl md:text-5xl">Selected work</h2>
