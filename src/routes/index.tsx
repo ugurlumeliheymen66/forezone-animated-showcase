@@ -97,7 +97,7 @@ function Index() {
           </p>
           <div className="flex justify-center min-h-[65px]">
             <Turnstile
-              siteKey="BURAYA_CLOUDFLARE_SITE_KEY_YAZ"
+              siteKey="0x4AAAAAAEgv14YsSssfSGFu"
               options={{ theme: "dark" }}
               onSuccess={() => setIsVerified(true)}
             />
