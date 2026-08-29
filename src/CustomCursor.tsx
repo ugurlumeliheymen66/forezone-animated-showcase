@@ -60,7 +60,7 @@ export function CustomCursor() {
     <>
       {/* Merkezdeki Küçük Nokta */}
       <div
-        className="pointer-events-none fixed top-0 left-0 z-[9999] h-2 w-2 rounded-full bg-primary transition-transform duration-75 ease-out"
+        className="pointer-events-none fixed top-0 left-0 z-[9999] h-2 w-2 rounded-full bg-primary transition-transform duration-75 ease-out hidden md:block"
         style={{
           transform: `translate3d(${position.x - 4}px, ${position.y - 4}px, 0) scale(${
             isHovered ? 0 : 1
@@ -69,7 +69,7 @@ export function CustomCursor() {
       />
       {/* Takip Eden Parlayan Halka */}
       <div
-        className={`pointer-events-none fixed top-0 left-0 z-[9998] rounded-full border border-primary/50 transition-all duration-150 ease-out ${
+        className={`pointer-events-none fixed top-0 left-0 z-[9998] rounded-full border border-primary/50 transition-all duration-150 ease-out hidden md:block ${
           isHovered
             ? "h-12 w-12 bg-primary/20 border-primary scale-110 shadow-[0_0_15px_rgba(255,255,255,0.3)]"
             : "h-8 w-8 bg-transparent"
