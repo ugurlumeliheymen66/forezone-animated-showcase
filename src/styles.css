@@ -230,3 +230,7 @@
 html, body, a, button {
   cursor: none !important;
 }
+/* Tarayıcının kendi imlecinin her eleman üzerinde gizlenmesini sağla */
+*, *::before, *::after {
+  cursor: none !important;
+}
