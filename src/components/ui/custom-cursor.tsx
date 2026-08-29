@@ -29,7 +29,7 @@ export function CustomCursor() {
     <div
       className={`pointer-events-none fixed left-0 top-0 z-[9999] rounded-full transition-transform duration-150 ease-out ${
         isHovered
-          ? "h-12 w-12 bg-accent/30 backdrop-blur-sm"
+          ? "h-8 w-8 bg-accent/30 backdrop-blur-sm"
           : "h-5 w-5 bg-primary/80"
       }`}
       style={{
