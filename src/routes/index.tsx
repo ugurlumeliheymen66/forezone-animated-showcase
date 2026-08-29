@@ -220,7 +220,7 @@ function Index() {
               >
                 <a
                   href={MAILTO}
-                  className="flex items-baseline justify-between gap-6 py-8 transition-all duration-500 group-hover:px-4"
+                  className="className="flex items-baseline justify-between gap-6 py-8 transition-all duration-500 group-hover:px-4 hover:translate-x-3"" 
                 >
                   <span className="font-display text-3xl md:text-4xl">{w.name}</span>
                   <span className="text-[11px] tracking-[0.25em] uppercase text-muted-foreground">
